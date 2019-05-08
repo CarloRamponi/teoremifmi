@@ -1,0 +1,40 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{makeidx}
+\usepackage{amsfonts}
+\makeindex
+\begin{document}
+\title{Teoremi di Fondamenti Matematici per l'Informatica}
+\author{Carlo Ramponi}
+\date{\today}
+\maketitle
+
+\newpage
+\section{L'ordinamento dei numeri naturali è un buon ordinamento} 
+\subsection*{Enunciato}
+L'ordinamento dei numeri naturali è un buon ordinamento
+\subsection*{Dimostrazione}
+Supponiamo che l'insieme $ A \subseteq \mathbb{N} $ non abbia minimo e proviamo che allora $ A = \emptyset $. Chiamiamo $ B $ il suo complementare ($ B = \mathbb{N} \setminus A $) e dimostriamo per induzione che \[ \forall n \in \mathbb{N} \quad \{0, 1, ..., n\} \subseteq B \]
+\begin{itemize}
+	\item $ 0 \notin A  $, altrimenti ne sarebbe il minimo, quindi $ 0 \in B $ e pertanto $ \{0\} \subseteq B $.
+	\item Supponiamo che $\{0, 1, ..., n\} \subseteq B$, allora $0, 1, ..., n \notin A$ e quindi $n+1 \notin A$, altrimenti ne sarebbe il minimo, ma allora $n+1 \in B$ e pertanto $\{0, 1, ..., n, n+1\} \subseteq B$.\\
+\end{itemize}
+Per il principio di induzione di prima forma un insieme con queste proprietà coincide con quello dei numeri naturali ($B = \mathbb{N}$) e quindi $A = \emptyset$
+
+\clearpage
+\section{Il principio di induzione (seconda forma)}
+\subsection*{Enunciato}
+Sia $P(n)$ una famiglia di proposizioni indicate su $\mathbb{N}$ e si supponga che
+\begin{enumerate}
+	\item $P(0)$ sia vera
+	\item $\forall n > 0 (P(k) vera \forall k < n) \Rightarrow P(n) vera$
+\end{enumerate}
+allora $P(n)$ è vera $\forall n \in \mathbb{N}$
+
+\subsection*{Dimostrazione}
+Sia $A = \{n \in \mathbb{N} | P(n)$ non è vera $\}$, e supponiamo per assurdo che $A \neq \emptyset$.\\
+Allora per la proprietà di buon ordinamento $A$ ha minimo $n$.\\
+Chiaramente $n \neq 0$ in quanto $P(0)$ è vera per ipotesi.\\
+Inoltre se $k < n$ allora $k \notin A$ in quanto $n = \min A$, ma allora dalla (2) segue che $P(n)$ è vera e quindi $n \notin A$, contraddicendo il fatto che $n \in A$.
+
+\printindex
+\end{document}
