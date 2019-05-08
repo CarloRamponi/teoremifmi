@@ -1,6 +1,7 @@
 \documentclass[a4paper,12pt]{article}
 \usepackage{makeidx}
 \usepackage{amsfonts}
+\usepackage{amsmath}
 \makeindex
 \begin{document}
 \title{Teoremi di Fondamenti Matematici per l'Informatica}
@@ -35,6 +36,35 @@ Sia $A = \{n \in \mathbb{N} | P(n)$ non è vera $\}$, e supponiamo per assurdo c
 Allora per la proprietà di buon ordinamento $A$ ha minimo $n$.\\
 Chiaramente $n \neq 0$ in quanto $P(0)$ è vera per ipotesi.\\
 Inoltre se $k < n$ allora $k \notin A$ in quanto $n = \min A$, ma allora dalla (2) segue che $P(n)$ è vera e quindi $n \notin A$, contraddicendo il fatto che $n \in A$.
+
+\clearpage
+
+\section{La divisione euclidea (esistenza e unicità)}
+\subsection*{Enunciato}
+Siano $n, m \in \mathbb{Z}$ con $m \neq 0$, allora esistono unici $q, r \in \mathbb{Z}$ tali che
+\[ \begin{cases}
+		n = mq + r \\
+		0 \leq r < |m|
+	\end{cases} \]
+	
+\subsection*{Dimostrazione}
+\begin{itemize}
+	\item \textbf{Esistenza} Supponiamo dapprima che $n, m \in \mathbb{N}$, ed usiamo il principio di induzione della seconda forma su $n$.
+		\begin{itemize}
+			\item Se $n = 0$ basta prendere $q = 0$ e $r = 0$.
+			\item Supponiamo $n > 0$ e che la tesi sia vera $\forall k < n$. Se $n < m$ basta prendere $q = 0$ e $r = n$, altrimenti sia $k = n - m$, dato che $m\neq 0$, $0 < k < n$, quindi per ipotesi di induzione esistono $q, r \in \mathbb{N}$ tali che
+			\[ \begin{cases}
+				k = mq + r \\
+				0 \leq r < |m|
+			\end{cases} \]
+		\end{itemize}
+		ma allora $n = k + m = mq + r + m = (q + 1)m + r$. \\
+		Supponiamo ora $n < 0$ e $m > 0$. Allora $-n > 0$ e quindi per il caso precedente si ha che esistono $q, r \in \mathbb{Z}$ tali che $-n = mq + r$ e $0 \leq r < m = |m|$. E quindi $n = m(-q) - r$. Se $r = 0$ abbiamo finito, se invece $0 < r < m$ allora $0 < m - r < m = |m|$ e $n = m(-q) - r = m(-q) -m +m -r = m(-1 -q) + (m-r)$.\\
+		Sia infine $m < 0$ allora $-m > 0$, quindi per i due casi precedenti $\exists q, r \in \mathbb{Z}$ tali che $n = (-m)q + r = m(-q) + r$ con $0 \leq r < -m = |m|$
+	\item \textbf{Unicità} Supponiamo che $n = mq + r$ e $n = mq' + r'$ con $0 \leq r, r' < m$. \\
+		Supponiamo che $r' \geq r$, allora $m(q - q') = r' - r$ e quindi passando ai moduli si ha $|m||q - q'| = |r' - r| = r' - r < |m|$, da cui $0 \leq |q - q'| < 1$ e quindi $|q - q'| = 0$ ovvero $q = q'$.\\
+		Ma allora da $mq + r = mq' + r'$ segue che anche $r = r'$.
+\end{itemize}
 
 \printindex
 \end{document}
