@@ -1,8 +1,7 @@
 \documentclass[a4paper,12pt]{article}
-\usepackage{makeidx}
 \usepackage{amsfonts}
 \usepackage{amsmath}
-\makeindex
+
 \begin{document}
 \title{Teoremi di Fondamenti Matematici per l'Informatica}
 \author{Carlo Ramponi}
@@ -10,6 +9,11 @@
 \maketitle
 
 \newpage
+
+\tableofcontents
+
+\clearpage
+
 \section{L'ordinamento dei numeri naturali è un buon ordinamento} 
 \subsection*{Enunciato}
 L'ordinamento dei numeri naturali è un buon ordinamento
@@ -66,5 +70,53 @@ Siano $n, m \in \mathbb{Z}$ con $m \neq 0$, allora esistono unici $q, r \in \mat
 		Ma allora da $mq + r = mq' + r'$ segue che anche $r = r'$.
 \end{itemize}
 
-\printindex
+\clearpage
+
+\section{Codifica dei natuali in base maggiore o uguale a 2}
+\textbf{Definizione} Sia $b \in \mathbb{N}$, diremo che $n \in \mathbb{N}$ è rappresentabile in base $b$ se esistono numeri $\epsilon_{0}, \epsilon_{1}, ..., \epsilon_{k} \in I_{b} = \{0, 1, ..., b-1\}$ tali che $n = \epsilon_{0} + \epsilon_{1}b + \epsilon_{2}b^{2} + ... + \epsilon_{k}b^{k}$.
+
+\subsection*{Enunciato}
+Sia $b \in \mathbb{N}, b \geq 2$. Allora ogni $n \in \mathbb{N}$ è rappresentabile in modo unico in base $b$. Ossia esiste una successione $\{\epsilon_{i}\}_{i \in \mathbb{N}}$ tale che:
+\begin{enumerate}
+	\item $\{\epsilon_{i}$ è definitivamente nulla ($\exists i_{0} \in \mathbb{N} : \epsilon_{i} = 0 \quad \forall i > i_{0}$)
+	\item $\epsilon_{i} \in I_{b}$ (ossia $0 \leq \epsilon_{i} < b$) per ogni $i \in \mathbb{N}$
+	\item $n = \sum_{i = 0}^{\infty} \epsilon_{i}b^i$
+\end{enumerate}
+e se $\{\epsilon_{i}'\}_{i \in \mathbb{N}}$ è un'altra tale successione, allora $\epsilon_{i} = \epsilon_{i}' \quad \forall i \in \mathbb{N}$
+
+\subsection*{Dimostrazione}
+\textbf{Esistenza} per induzione su $ n $.
+\begin{enumerate}
+	\item Se $ n = 0 $ basta prendere $ \epsilon_{i} = 0 \quad \forall i \in \mathbb{N} $.
+	\item Supponiamo ora $ n > 0 $ e che la tesi sia vera per ogni $ k < n $.\\
+	Siano $ q, r $ tali che $ n = bq + r $ con $ 0 \leq r < b $. Dato che $ b \geq 2 $ si ha che $ 0 \leq q < bq \leq bq +r = n $ e quindi per l'ipotesi di induzione esiste una successione definitivamente nulla $ \{\delta_{i}\}_{i \in \mathbb{N}} $, costituita da interi tali che $ 0 \leq \delta_{i} < b \quad \forall i \in \mathbb{N} $ e tale che $ q = \sum_{i = 0}^{\infty} \delta_{i}b^{i} $. Ma allora
+	\[ n = bq + r = b \sum_{i = 0}^\infty \delta_{i}b^i + r = \sum_{i = 0}^\infty \delta_{i}b^{i+1} + r = \sum_{i = 1}^\infty \delta_{i-1}b^i + r = \sum_{i = 0}^\infty \epsilon_{i}b^i \]
+	dove si è posto $ \epsilon_{0} = r $ e $ \epsilon_{i} = \delta_{i-1} \quad \forall i > 0 $.\\
+	La successione $ \{ \epsilon_{i} \} $ è definitivamente nulla, dato che lo è $ \{\delta_{i}\} $ ed inoltre $ 0 \leq \epsilon_{i} = \delta_{i-1} < b \quad \forall i > 0 $ e $ 0 \leq \epsilon_{0} = r < b $.
+\end{enumerate}
+\textbf{Unicità} per induzione su $ n $.
+\begin{enumerate}
+	\item Se $ n = 0 = \sum_i \epsilon_ib^i $ allora ogni addendo della somma, essendo non negativo, deve essere nullo e quindi $ \epsilon_{i} = 0 \quad \forall i \in \mathbb{N} $
+	\item Supponiamo ora $ n > 0 $ e che l'espressione in base $ b $ sia unica per tutti i numeri $ k < n $. Sia $ n $ tale che $ n = \sum_{i = 0}^{\infty} \epsilon_ib^i = \sum_{i = 0}^{\infty} \epsilon_i'b^i $, allora possiamo scrivere
+	\[ n = b\sum_{i = 1}^\infty \epsilon_ib^{i-1} + \epsilon_{0} = b\sum_{i = 1}^\infty \epsilon_i'b^{i-1} + \epsilon_{0}' \]
+	ma per l'unicità della divisione euclidea si ha che $ \epsilon_{0} = \epsilon_{0}' $ e $ q = \sum_{i = 1}^\infty \epsilon_ib^{i-1} = \sum_{i = 1}^\infty \epsilon_i'b^{i-1} $. Come prima $ q < n $ e quindi per ipotesi induttiva si ha anche che $ \epsilon_i = \epsilon_i' \quad \forall i \geq 1 $
+\end{enumerate}
+
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
