@@ -10,97 +10,151 @@
 
 \newpage
 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\teorema}[3]{
+	\section{#1}
+	\subsection*{Enunciato}
+	#2
+	\subsection*{Dimostrazione}
+	#3
+	\clearpage
+}
+
 \tableofcontents
 
 \clearpage
 
-\section{L'ordinamento dei numeri naturali è un buon ordinamento} 
-\subsection*{Enunciato}
-L'ordinamento dei numeri naturali è un buon ordinamento
-\subsection*{Dimostrazione}
-Supponiamo che l'insieme $ A \subseteq \mathbb{N} $ non abbia minimo e proviamo che allora $ A = \emptyset $. Chiamiamo $ B $ il suo complementare ($ B = \mathbb{N} \setminus A $) e dimostriamo per induzione che \[ \forall n \in \mathbb{N} \quad \{0, 1, ..., n\} \subseteq B \]
+\teorema{L'ordinamento dei numeri naturali è un buon ordinamento} 
+{
+	L'ordinamento dei numeri naturali è un buon ordinamento
+}
+{
+Supponiamo che l'insieme $ A \subseteq \N $ non abbia minimo e proviamo che allora $ A = \emptyset $. Chiamiamo $ B $ il suo complementare ($ B = \N \setminus A $) e dimostriamo per induzione che \[ \forall n \in \N \quad \{0, 1, ..., n\} \subseteq B \]
 \begin{itemize}
 	\item $ 0 \notin A  $, altrimenti ne sarebbe il minimo, quindi $ 0 \in B $ e pertanto $ \{0\} \subseteq B $.
 	\item Supponiamo che $\{0, 1, ..., n\} \subseteq B$, allora $0, 1, ..., n \notin A$ e quindi $n+1 \notin A$, altrimenti ne sarebbe il minimo, ma allora $n+1 \in B$ e pertanto $\{0, 1, ..., n, n+1\} \subseteq B$.\\
 \end{itemize}
-Per il principio di induzione di prima forma un insieme con queste proprietà coincide con quello dei numeri naturali ($B = \mathbb{N}$) e quindi $A = \emptyset$
+Per il principio di induzione di prima forma un insieme con queste proprietà coincide con quello dei numeri naturali ($B = \N$) e quindi $A = \emptyset$
+}
 
-\clearpage
-\section{Il principio di induzione (seconda forma)}
-\subsection*{Enunciato}
-Sia $P(n)$ una famiglia di proposizioni indicate su $\mathbb{N}$ e si supponga che
-\begin{enumerate}
-	\item $P(0)$ sia vera
-	\item $\forall n > 0 (P(k) vera \forall k < n) \Rightarrow P(n) vera$
-\end{enumerate}
-allora $P(n)$ è vera $\forall n \in \mathbb{N}$
+\teorema{Il principio di induzione (seconda forma)}
+{
+	Sia $P(n)$ una famiglia di proposizioni indicate su $\N$ e si supponga che
+	\begin{enumerate}
+		\item $P(0)$ sia vera
+		\item $\forall n > 0 (P(k) vera \forall k < n) \Rightarrow P(n) vera$
+	\end{enumerate}
+	allora $P(n)$ è vera $\forall n \in \N$
+}
+{
+	Sia $A = \{n \in \N | P(n)$ non è vera $\}$, e supponiamo per assurdo che $A \neq \emptyset$.\\
+	Allora per la proprietà di buon ordinamento $A$ ha minimo $n$.\\
+	Chiaramente $n \neq 0$ in quanto $P(0)$ è vera per ipotesi.\\
+	Inoltre se $k < n$ allora $k \notin A$ in quanto $n = \min A$, ma allora dalla (2) segue che $P(n)$ è vera e quindi $n \notin A$, contraddicendo il fatto che $n \in A$.
+}
 
-\subsection*{Dimostrazione}
-Sia $A = \{n \in \mathbb{N} | P(n)$ non è vera $\}$, e supponiamo per assurdo che $A \neq \emptyset$.\\
-Allora per la proprietà di buon ordinamento $A$ ha minimo $n$.\\
-Chiaramente $n \neq 0$ in quanto $P(0)$ è vera per ipotesi.\\
-Inoltre se $k < n$ allora $k \notin A$ in quanto $n = \min A$, ma allora dalla (2) segue che $P(n)$ è vera e quindi $n \notin A$, contraddicendo il fatto che $n \in A$.
-
-\clearpage
-
-\section{La divisione euclidea (esistenza e unicità)}
-\subsection*{Enunciato}
-Siano $n, m \in \mathbb{Z}$ con $m \neq 0$, allora esistono unici $q, r \in \mathbb{Z}$ tali che
-\[ \begin{cases}
-		n = mq + r \\
-		0 \leq r < |m|
-	\end{cases} \]
-	
-\subsection*{Dimostrazione}
+\teorema{La divisione euclidea (esistenza e unicità)}
+{
+	Siano $n, m \in \Z$ con $m \neq 0$, allora esistono unici $q, r \in \Z$ tali che
+	\[ \begin{cases}
+			n = mq + r \\
+			0 \leq r < |m|
+		\end{cases} \]
+}
+{
 \begin{itemize}
-	\item \textbf{Esistenza} Supponiamo dapprima che $n, m \in \mathbb{N}$, ed usiamo il principio di induzione della seconda forma su $n$.
+	\item \textbf{Esistenza} Supponiamo dapprima che $n, m \in \N$, ed usiamo il principio di induzione della seconda forma su $n$.
 		\begin{itemize}
 			\item Se $n = 0$ basta prendere $q = 0$ e $r = 0$.
-			\item Supponiamo $n > 0$ e che la tesi sia vera $\forall k < n$. Se $n < m$ basta prendere $q = 0$ e $r = n$, altrimenti sia $k = n - m$, dato che $m\neq 0$, $0 < k < n$, quindi per ipotesi di induzione esistono $q, r \in \mathbb{N}$ tali che
+			\item Supponiamo $n > 0$ e che la tesi sia vera $\forall k < n$. Se $n < m$ basta prendere $q = 0$ e $r = n$, altrimenti sia $k = n - m$, dato che $m\neq 0$, $0 < k < n$, quindi per ipotesi di induzione esistono $q, r \in \N$ tali che
 			\[ \begin{cases}
 				k = mq + r \\
 				0 \leq r < |m|
 			\end{cases} \]
 		\end{itemize}
 		ma allora $n = k + m = mq + r + m = (q + 1)m + r$. \\
-		Supponiamo ora $n < 0$ e $m > 0$. Allora $-n > 0$ e quindi per il caso precedente si ha che esistono $q, r \in \mathbb{Z}$ tali che $-n = mq + r$ e $0 \leq r < m = |m|$. E quindi $n = m(-q) - r$. Se $r = 0$ abbiamo finito, se invece $0 < r < m$ allora $0 < m - r < m = |m|$ e $n = m(-q) - r = m(-q) -m +m -r = m(-1 -q) + (m-r)$.\\
-		Sia infine $m < 0$ allora $-m > 0$, quindi per i due casi precedenti $\exists q, r \in \mathbb{Z}$ tali che $n = (-m)q + r = m(-q) + r$ con $0 \leq r < -m = |m|$
+		Supponiamo ora $n < 0$ e $m > 0$. Allora $-n > 0$ e quindi per il caso precedente si ha che esistono $q, r \in \Z$ tali che $-n = mq + r$ e $0 \leq r < m = |m|$. E quindi $n = m(-q) - r$. Se $r = 0$ abbiamo finito, se invece $0 < r < m$ allora $0 < m - r < m = |m|$ e $n = m(-q) - r = m(-q) -m +m -r = m(-1 -q) + (m-r)$.\\
+		Sia infine $m < 0$ allora $-m > 0$, quindi per i due casi precedenti $\exists q, r \in \Z$ tali che $n = (-m)q + r = m(-q) + r$ con $0 \leq r < -m = |m|$
 	\item \textbf{Unicità} Supponiamo che $n = mq + r$ e $n = mq' + r'$ con $0 \leq r, r' < m$. \\
 		Supponiamo che $r' \geq r$, allora $m(q - q') = r' - r$ e quindi passando ai moduli si ha $|m||q - q'| = |r' - r| = r' - r < |m|$, da cui $0 \leq |q - q'| < 1$ e quindi $|q - q'| = 0$ ovvero $q = q'$.\\
 		Ma allora da $mq + r = mq' + r'$ segue che anche $r = r'$.
 \end{itemize}
+}
 
-\clearpage
+\teorema{Codifica dei natuali in base maggiore o uguale a 2}
+{
+	\textbf{Definizione} Sia $b \in \N$, diremo che $n \in \N$ è rappresentabile in base $b$ se esistono numeri $\epsilon_{0}, \epsilon_{1}, ..., \epsilon_{k} \in I_{b} = \{0, 1, ..., b-1\}$ tali che $n = \epsilon_{0} + \epsilon_{1}b + \epsilon_{2}b^{2} + ... + \epsilon_{k}b^{k}$.
+	\\\\
+	Sia $b \in \N, b \geq 2$. Allora ogni $n \in \N$ è rappresentabile in modo unico in base $b$. Ossia esiste una successione $\{\epsilon_{i}\}_{i \in \N}$ tale che:
+	\begin{enumerate}
+		\item $\{\epsilon_{i}$ è definitivamente nulla ($\exists i_{0} \in \N : \epsilon_{i} = 0 \quad \forall i > i_{0}$)
+		\item $\epsilon_{i} \in I_{b}$ (ossia $0 \leq \epsilon_{i} < b$) per ogni $i \in \N$
+		\item $n = \sum_{i = 0}^{\infty} \epsilon_{i}b^i$
+	\end{enumerate}
+	e se $\{\epsilon_{i}'\}_{i \in \N}$ è un'altra tale successione, allora $\epsilon_{i} = \epsilon_{i}' \quad \forall i \in \N$
+}
+{
+	\textbf{Esistenza} per induzione su $ n $.
+	\begin{enumerate}
+		\item Se $ n = 0 $ basta prendere $ \epsilon_{i} = 0 \quad \forall i \in \N $.
+		\item Supponiamo ora $ n > 0 $ e che la tesi sia vera per ogni $ k < n $.\\
+		Siano $ q, r $ tali che $ n = bq + r $ con $ 0 \leq r < b $. Dato che $ b \geq 2 $ si ha che $ 0 \leq q < bq \leq bq +r = n $ e quindi per l'ipotesi di induzione esiste una successione definitivamente nulla $ \{\delta_{i}\}_{i \in \N} $, costituita da interi tali che $ 0 \leq \delta_{i} < b \quad \forall i \in \N $ e tale che $ q = \sum_{i = 0}^{\infty} \delta_{i}b^{i} $. Ma allora
+		\[ n = bq + r = b \sum_{i = 0}^\infty \delta_{i}b^i + r = \sum_{i = 0}^\infty \delta_{i}b^{i+1} + r = \sum_{i = 1}^\infty \delta_{i-1}b^i + r = \sum_{i = 0}^\infty \epsilon_{i}b^i \]
+		dove si è posto $ \epsilon_{0} = r $ e $ \epsilon_{i} = \delta_{i-1} \quad \forall i > 0 $.\\
+		La successione $ \{ \epsilon_{i} \} $ è definitivamente nulla, dato che lo è $ \{\delta_{i}\} $ ed inoltre $ 0 \leq \epsilon_{i} = \delta_{i-1} < b \quad \forall i > 0 $ e $ 0 \leq \epsilon_{0} = r < b $.
+	\end{enumerate}
+	\textbf{Unicità} per induzione su $ n $.
+	\begin{enumerate}
+		\item Se $ n = 0 = \sum_i \epsilon_ib^i $ allora ogni addendo della somma, essendo non negativo, deve essere nullo e quindi $ \epsilon_{i} = 0 \quad \forall i \in \N $
+		\item Supponiamo ora $ n > 0 $ e che l'espressione in base $ b $ sia unica per tutti i numeri $ k < n $. Sia $ n $ tale che $ n = \sum_{i = 0}^{\infty} \epsilon_ib^i = \sum_{i = 0}^{\infty} \epsilon_i'b^i $, allora possiamo scrivere
+		\[ n = b\sum_{i = 1}^\infty \epsilon_ib^{i-1} + \epsilon_{0} = b\sum_{i = 1}^\infty \epsilon_i'b^{i-1} + \epsilon_{0}' \]
+		ma per l'unicità della divisione euclidea si ha che $ \epsilon_{0} = \epsilon_{0}' $ e $ q = \sum_{i = 1}^\infty \epsilon_ib^{i-1} = \sum_{i = 1}^\infty \epsilon_i'b^{i-1} $. Come prima $ q < n $ e quindi per ipotesi induttiva si ha anche che $ \epsilon_i = \epsilon_i' \quad \forall i \geq 1 $
+	\end{enumerate}
+}
 
-\section{Codifica dei natuali in base maggiore o uguale a 2}
-\textbf{Definizione} Sia $b \in \mathbb{N}$, diremo che $n \in \mathbb{N}$ è rappresentabile in base $b$ se esistono numeri $\epsilon_{0}, \epsilon_{1}, ..., \epsilon_{k} \in I_{b} = \{0, 1, ..., b-1\}$ tali che $n = \epsilon_{0} + \epsilon_{1}b + \epsilon_{2}b^{2} + ... + \epsilon_{k}b^{k}$.
+\teorema{Il massimo comun divisore}{
+	\textbf{Definizione} Dati due interi $ n, m \in \Z $ non entrambi nulli, si dice che $ d $ è un \textit{massimo comun divisore tra n e m} se:
+	\begin{enumerate}
+		\item $ d | n $ e $ d | m $ \hfill ( è un divisore )
+		\item Se $ c | n $ e $ c | m $ allora $ c | d $ \hfill ( è il massimo )
+	\end{enumerate}
+	\textbf{Proposizione} Se $ d $ e $ d' $ sono due \textit{massimi comun divisori tra n ed m} allora $ d' = \pm d $.\\
+	\textbf{Dimostrazione} $ d $ è un divisore comune di $ n $ e $ m $, quindi poichè $ d' $ è un massimo comun divisore di ha che $ d | d' $. Scambiando i ruoli di $ d $ e $ d' $ si ha allora che anche $ d' | d $ e quindi si ha che $ d' = \pm d $.\\
+	\textbf{Definizione} Diremo che $ d $ è il massimo comun divisore di $ n $ e $ m $ se è un massimo comun divisore positivo. La proposizione precedente ci garantisce che se esiste un massimo comun divisore esso è unico.\\\\
+	Dati due numeri $ n, m \in \Z $ non entrambi nulli, allora esiste il \textit{massimo comun divisore tra n ed m.}
+}{
+	\textbf{Esistenza} Si consideri l'insieme \[ S = \{s \in \Z | s > 0, \exists x, y \in \Z : s = nx + my\} \]
+	$ S \neq \emptyset $ dato che $ nn + mm > 0 $ (visto che n ed m non sono entrambi nulli).\\
+	Sia ora \[ d = nx + my = \min S \]
+	dimostriamo che $ d $ è il massimo comun divisore:\\
+	Se $ c | n $ e $ c | m $ allora $ n = ck $ e $ m = ch $, quindi $  d = nx + my = ckx + chy = c(kx+hy) $, ossia $ c | d $.\\
+	Dimostriamo ora che $ d | n $:\\
+	consideriamo la divisione euclidea tra $ n $ e $ d $, ossia $ n = dq + r $ con $ 0 \leq r < d $, se $ r > 0 $, allora $ r = n-dq = n - (nx + my)q = n(1 - qx) + (-m)y \in S $. Ciò è assurdo perchè $ r < d $ e $ d = \min S $. Quindi $ r = 0 $ ossia $ d | n $. In modo del tutto analogo si prova che $ d | m $.
+}
 
-\subsection*{Enunciato}
-Sia $b \in \mathbb{N}, b \geq 2$. Allora ogni $n \in \mathbb{N}$ è rappresentabile in modo unico in base $b$. Ossia esiste una successione $\{\epsilon_{i}\}_{i \in \mathbb{N}}$ tale che:
-\begin{enumerate}
-	\item $\{\epsilon_{i}$ è definitivamente nulla ($\exists i_{0} \in \mathbb{N} : \epsilon_{i} = 0 \quad \forall i > i_{0}$)
-	\item $\epsilon_{i} \in I_{b}$ (ossia $0 \leq \epsilon_{i} < b$) per ogni $i \in \mathbb{N}$
-	\item $n = \sum_{i = 0}^{\infty} \epsilon_{i}b^i$
-\end{enumerate}
-e se $\{\epsilon_{i}'\}_{i \in \mathbb{N}}$ è un'altra tale successione, allora $\epsilon_{i} = \epsilon_{i}' \quad \forall i \in \mathbb{N}$
-
-\subsection*{Dimostrazione}
-\textbf{Esistenza} per induzione su $ n $.
-\begin{enumerate}
-	\item Se $ n = 0 $ basta prendere $ \epsilon_{i} = 0 \quad \forall i \in \mathbb{N} $.
-	\item Supponiamo ora $ n > 0 $ e che la tesi sia vera per ogni $ k < n $.\\
-	Siano $ q, r $ tali che $ n = bq + r $ con $ 0 \leq r < b $. Dato che $ b \geq 2 $ si ha che $ 0 \leq q < bq \leq bq +r = n $ e quindi per l'ipotesi di induzione esiste una successione definitivamente nulla $ \{\delta_{i}\}_{i \in \mathbb{N}} $, costituita da interi tali che $ 0 \leq \delta_{i} < b \quad \forall i \in \mathbb{N} $ e tale che $ q = \sum_{i = 0}^{\infty} \delta_{i}b^{i} $. Ma allora
-	\[ n = bq + r = b \sum_{i = 0}^\infty \delta_{i}b^i + r = \sum_{i = 0}^\infty \delta_{i}b^{i+1} + r = \sum_{i = 1}^\infty \delta_{i-1}b^i + r = \sum_{i = 0}^\infty \epsilon_{i}b^i \]
-	dove si è posto $ \epsilon_{0} = r $ e $ \epsilon_{i} = \delta_{i-1} \quad \forall i > 0 $.\\
-	La successione $ \{ \epsilon_{i} \} $ è definitivamente nulla, dato che lo è $ \{\delta_{i}\} $ ed inoltre $ 0 \leq \epsilon_{i} = \delta_{i-1} < b \quad \forall i > 0 $ e $ 0 \leq \epsilon_{0} = r < b $.
-\end{enumerate}
-\textbf{Unicità} per induzione su $ n $.
-\begin{enumerate}
-	\item Se $ n = 0 = \sum_i \epsilon_ib^i $ allora ogni addendo della somma, essendo non negativo, deve essere nullo e quindi $ \epsilon_{i} = 0 \quad \forall i \in \mathbb{N} $
-	\item Supponiamo ora $ n > 0 $ e che l'espressione in base $ b $ sia unica per tutti i numeri $ k < n $. Sia $ n $ tale che $ n = \sum_{i = 0}^{\infty} \epsilon_ib^i = \sum_{i = 0}^{\infty} \epsilon_i'b^i $, allora possiamo scrivere
-	\[ n = b\sum_{i = 1}^\infty \epsilon_ib^{i-1} + \epsilon_{0} = b\sum_{i = 1}^\infty \epsilon_i'b^{i-1} + \epsilon_{0}' \]
-	ma per l'unicità della divisione euclidea si ha che $ \epsilon_{0} = \epsilon_{0}' $ e $ q = \sum_{i = 1}^\infty \epsilon_ib^{i-1} = \sum_{i = 1}^\infty \epsilon_i'b^{i-1} $. Come prima $ q < n $ e quindi per ipotesi induttiva si ha anche che $ \epsilon_i = \epsilon_i' \quad \forall i \geq 1 $
-\end{enumerate}
+\teorema{Il minimo comune multiplo}{
+		\textbf{Definizione} Dati due interi $ n, m \in \Z $ si dice che $ M $ è un \textit{minimo comune multiplo di n ed m} se:
+		\begin{enumerate}
+			\item $ n|M $ e $ m|M $ \hfill ( è un multiplo )
+			\item se $ n | c $ e $ m | c $ allora $ M|c $ \hfill ( è il minimo )
+		\end{enumerate}
+	Come nel caso del massimo comun divisore di dimostra che due minimi comuni multipli sono uguali a meno del segno e quindi si chiama \textit{il minimo comune multiplo} quello positivo (è quindi unico)\\\\
+	Siano $ n, m \in \Z $ non entrambi nulli, allora esiste il \textit{minimo comune multiplo tra n e m}.
+}{
+	\textbf{Esistenza} Sia
+	\[ M = \frac{nm}{(n, m)} = n'm'(n, m) \]
+	dove si è posto
+	\[
+		\begin{cases}
+			n = n'(n, m)\\
+			m = m'(n, m)
+		\end{cases}
+	\]
+	Chiaramente allora $ M = nm' = n'm $ e quindi $ n|M $ e $ m | M $.\\
+	Se $ n|c $ e $ m|c $ allora $ (n, m) | c $ e quindi posto $ c = c'(n, m) $ si ha che $ n' | c' $ e $ m' | c' $. Dato che $ (n', m') = 1 $, si ha che $ n'm' | c' $ e quindi che $ M = n'm'(n, m) | c'(n, m) = c $.
+}
 
 \end{document}
 
