@@ -183,6 +183,31 @@ Per il principio di induzione di prima forma un insieme con queste proprietà co
 	\end{enumerate}
 }
 
+\teorema{Il Teorema Cinese del resto}{
+	Il sistema di congruenze:
+	\[ \begin{cases}
+		x \equiv a \quad \mod n\\
+		x \equiv b \quad \mod m
+	\end{cases} \]
+	ha soluzione se e solo se $ (n, m) | b-a $.\\
+	Se $ c $ è una soluzione del sistema, allora gli elementi di $ [c]_{[n, m]} $ sono \textbf{tutte} e \textbf{sole} le soluzioni del sistema. (i.e. le soluzioni del sistema sono tutte e sole della forma $ c + k[n, m] $ al variare di $ k \in \Z $).
+}{
+	Sia $ c $ una soluzione del sistema, allora $ \exists h, k \in \Z $ tali che $ c = a+hn = b+km $ e quindi $ a - b = km - hn $.\\
+	Ma allora dal fatto che $ (n, m) | n $ e $ (n, m) | m $ si ha che $ (n, m) | a - b $.\\
+	Viceversa, supponiamo che $ (n, m) | a - b $, allora, per quanto visto in precedenza, $ \exists h, k \in \Z $ tali che $ a - b = hn + km $. Ma allora $ a - hn = b+kn $, detto quindi $  c = a-hn = b + km $, si ha evidentemente che $ c $ risolve entrambe le congruenze.\\
+	Sia $ S = \{x \in \Z \  | \  x \text{ risolve il sistema}\} $.  Dobbiamo provare che se $ c $ è una soluzione del sistema allora $ S = [c]_{[n, m]} $.
+	\begin{itemize}
+		\item $\mathbf{ S \subseteq [c]_{[n, m]} }$. Sia $ c' $ un'altra soluzione del sistema, allora $ c = a+hn = b+km $ e $ c' = a+h'n = b+k'm $ e quindi sottraendo si ha:
+		\[ \begin{matrix}
+			c - c' & = & a+hn - a-h'n = (h-h')n & \Rightarrow & n \ | \ (c-c') \\
+			c - c' & = & a+km - a-k'm = (k-k')m & \Rightarrow & m \ | \ (c-c')
+		\end{matrix}
+		 \]
+		 Ma allora $ [n, m] \ | \ c - c' $, ossia $ c' \equiv c \mod [n, m] $ ovvero $ c' \in [c]_{[n, m]} $.
+		 \item $\mathbf{ [c]_{[n, m]}  \subseteq S }$. Sia $ c' \in [c]_{[n, m]}] $, ovvero $ c' = c+h[n, m] $. Dal fatto che $ c \equiv a \mod n $ e che $ h[n, m] = \equiv 0 \mod n $ segue che $ c' = c + h[n, m] \equiv a \mod n $. In modo analogo si ha che $  c' \equiv b \mod m $ e quindi che $ c' \in S $.
+	\end{itemize}
+}
+
 \end{document}
 
 
