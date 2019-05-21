@@ -208,6 +208,32 @@ Per il principio di induzione di prima forma un insieme con queste proprietà co
 	\end{itemize}
 }
 
+\newcommand{\ZnZ}{\Z / n\Z}
+\newcommand{\ZnZstar}{\ZnZ^*}
+
+\teorema{Teorema di Fermat-Eulero}{
+	Sia $ u \in \ZnZstar $ allora $ u^{\Phi(n)} = 1 $ (in $ \ZnZ $).
+}{
+	Sia $ L_u : \ZnZstar \rightarrow \ZnZstar $ tale che $ L_u(v) = uv $, osserviamo che la funzione risulta iniettiva, infatti $ L_u(v_1) = L_u(v_2) \Leftrightarrow uv_1 = uv_2 $ e dato che $ u $ è invertibile $ \Leftrightarrow v_1 = v_2 $. Visto che l'insieme $ \ZnZstar $ è finito $ L_u $ risulta essere bigettiva.\\
+	Sia $ k = \Phi(n) $, e siano $ x_1, ..., x_k $ tutti gli elementi di $ \ZnZstar $, dato che l'applicazione $ L_u $ è bigettiva, allora $ L_u(x_1), ..., L_u(x_k) $ sono ancora tutti elementi di $ \ZnZstar $, ma allora, per la commutatività del prodotto 
+	\[ x_1x_2...x_k = L_u(x_1)L_u(x_2)...L_u(x_k) \]
+	e quindi:
+	\[ x_1x_2...x_k = ux_1ux_2...ux_k = u^k(x_1x_2...x_k) \]
+	Dato che $ x_1x_2...x_k $ è invertibile ne segue che
+	\[ u^k = 1 \quad \text{(in } \ZnZ \text{)} \]
+}
+
+\teorema{Crittografia RSA}{
+	Sia $ c $ coprimo con $ \Phi(n) $ allora l'applicazione
+	\[ C : \ZnZstar \rightarrow \ZnZstar \text{ definita da } x \mapsto x^c \]
+	è invertibile e la sua inversa è data da
+	\[ D(x) = x^d \text{ con } cd \equiv 1 \mod \Phi(n) \]
+}{
+	Se $ c $ è coprimo con $ \Phi(n) $, allora esiste un $ d $ cone nell'enunciato, ossia tale che $ cd \equiv 1 \mod \Phi(n) $, ma allora $ cd = k\Phi(n) + 1 $ e quindi, $ \forall x \in \ZnZstar $ si ha:
+	\[ D(C(x)) = (x^c)^d = x^{cd} = x^{k\Phi(n)+1} = x(x^{\Phi(n)})^k = x \cdot 1^k = x \]
+	Del tutto analoga è la prova che anche $ C(D(x)) = x \ \forall x \in \ZnZstar $, da cui la tesi.
+}
+
 \end{document}
 
 
