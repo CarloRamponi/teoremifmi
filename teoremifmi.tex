@@ -1,6 +1,7 @@
 \documentclass[a4paper,12pt]{article}
 \usepackage{amsfonts}
 \usepackage{amsmath}
+\usepackage[normalem]{ulem}
 
 \begin{document}
 \title{Teoremi di Fondamenti Matematici per l'Informatica}
@@ -232,6 +233,67 @@ Per il principio di induzione di prima forma un insieme con queste proprietà co
 	Se $ c $ è coprimo con $ \Phi(n) $, allora esiste un $ d $ cone nell'enunciato, ossia tale che $ cd \equiv 1 \mod \Phi(n) $, ma allora $ cd = k\Phi(n) + 1 $ e quindi, $ \forall x \in \ZnZstar $ si ha:
 	\[ D(C(x)) = (x^c)^d = x^{cd} = x^{k\Phi(n)+1} = x(x^{\Phi(n)})^k = x \cdot 1^k = x \]
 	Del tutto analoga è la prova che anche $ C(D(x)) = x \ \forall x \in \ZnZstar $, da cui la tesi.
+}
+
+\teorema{Equivalenza tra congiungibilità con cammini e congiungibilità con passeggiate}{
+	\textbf{Definizione.} Sia $ G = (V, E) $ e siano $ v, w, \in V $. Diremo che $ v $ e $ w $ sono \textit{congiungibili} con un cammino [rispettivamente con una passeggiata] se esiste un cappino [risp. una passeggiata] $ (v_0, v_1, ..., v_n) $ tale che $ v_0 = v $ e $ v_n = w $ \\
+	Due vertici sono congiungibili mediante un cammino se e solo se lo sono tramite una passeggiata.
+}{
+	\begin{itemize}
+		\item (cammino $ \Leftarrow $ passeggiata): Banale, in quanto un cammino è anche una passeggiata.
+		\item (cammino $ \Rightarrow $ passeggiata):\\
+			Supponiamo quindi che $ \exists $ una passeggiata $ P = (v_0, ..., v_k) $ in G tale che $ v_0 = v $ e $ v_k = w $.\\
+			Indichiamo con $ \mathbb{P} $ l'insieme di tutte le passeggiate $ Q $ in $ G $ che partono da $ v $ e arrivano in $ w $.\\
+			Per ipotesi $ P \in \mathbb{P} $, quindi $ \mathbb{P} \neq \emptyset $.\\
+			Dunque $ \mathbb{A} = \{lunghezza(Q) \in \N \ | \ Q \in \mathbb{P}\} \neq \emptyset $.\\
+			Poichè $ (\N, \leq) $ è \textbf{ben} ordinato, $ \exists \min \mathbb{A} $.\\
+			Dunque $ \exists P_0 \in \mathbb{P} $ tale che:
+			\begin{itemize}
+				\item $ P_0 $ è una passeggiata in $ G $ che parte da $ v $ e arriva in $ w $
+				\item $ lunghezza(P_0) \leq lunghezza(Q) \qquad \forall Q \in \mathbb{P} $
+			\end{itemize}
+		Proviamo quindi che $ P_0 $ è un cammino. Sia:
+		\[ P_0 = (y_0, y_1, ..., y_h) \text{ dove } y_0 = v \text{ e } y_h = w \]
+		Se $ P_0 $ non fosse un cammino esisterebbero $ i, j \in \{0, 1, ..., h\} $ tali che $ i \neq j $ e $ y_i = y_j $ (Supp. $ i < j $). Possiamo definire:
+		\[ P_1 = (y_0, y_1, ..., y_i, \text{\sout{$ y_{i+1}, ..., y_j $}}, y_{j+1}, ..., y_h) \in \mathbb{P} \]
+		Vale che $ lung(P_1) = lung(P_0) - (j- i) \Rightarrow lung(P_1) < lung(P_0) $, ma questo è assurdo perchè $ P_0 $ ha lunghezza minima.\\
+		$ \Rightarrow P_0 $ è un cammino in $ G $. 
+	\end{itemize}
+}
+
+\teorema{La relazione di congiungibilità}{
+	La relazione di congiungibilità è una relazione di equivalenza sui vertici di un grafo finito.
+}{
+	Indichiamo con $ \sim $ la relazione di congiungibilità.\\
+	Dobbiamo provare che la relazione di essere congiungibili $ \sim $ è riflessiva, simmetrica e transitiva.
+	\begin{enumerate}
+		\item \textbf{$ \sim $ è riflessiva.} Infatti $ \forall v \in V(G), (v) $ è un cammino che congiunge $ v $ con se stesso, quindi $ \forall v \in V(G), v \sim v $.
+		\item \textbf{$ \sim $ è simmetrica.} Se $ u \sum v $ allora esiste una passeggiata $ P = (v_0, ..., v_n) $ tale che $ u = v_0 $ e $ v = v_n $. Ma allora $ P' = (v_n, v_{n-1}, ..., v_0) $ è una passeggiata (perchè due vertici consecutivi in $ P' $ sono adiacenti dato che lo sono, anche se scambiati, in $ P $) il cui primo vertice è $ v_n = v $ e l'ultimo è $ v_0 = u $, ovvero $ v \sim u $.
+		\item \textbf{$ \sim $ è transitiva.} Se $ u \sim v $ e $ v \sim w $ allora esistono due passeggiate $ P_1 = (v_0, ..., v_n) $ e $ P_2 = (u_0, ..., u_m) $ tali che $ u = v_0, v = v_n = u_0 \text{ e } w = u_m $.\\
+		Sia $ Q = (v_0, ..., v_n, u_1, ..., u_m) $, $ Q $ è una passeggiata dato che vertici consecutivi in $ Q $ sono consecutivi in $ P_1 $ o in $ P_2 $ (si osservi che essendo $ v_n = u_0 $ si ha che $ v_n $ e $ u_1 $ sono consecutivi in $ P_2 $), d'altra parte il primo e l'ultimo vertice di $ Q $ sono $ u $ e $ w $, quindi $ u \sim w $. 
+	\end{enumerate}
+}
+
+\teorema{Relazione findamentale dei grafi finiti}{
+	Se $ G = (V, E) $ è un grafo finito, allora:
+	\[ \sum_{v \in V} \deg_G(v) = 2|E| \]
+}{
+	Siano $ v_1, \dots, v_n $ i vertici di $ G $ e $ e_1, \dots, e_k $ i suoi lati.\\
+	Per ogni $ i = 1, \dots, n $ e $ j = 1, \dots, k $ consideriamo il numero
+	\[
+	m_{i, j} = 
+	\begin{cases}
+		1 & \text{se } v_i \in e_j \\
+		0 & \text{se } v_i \not\in e_j
+	\end{cases} \]
+	Dalle proprietà associativa e commutativa della somma si ha evidentemente che
+	\[ \sum_{i = 1}^{n} (\sum_{j = 1}^{k} m_{i, j}) = \sum_{j = 1}^{k} (\sum_{i = 1}^{n} m_{i, j}) \]
+	Ma fissato $ i $, il numero $ \sum_{j = 1}^{k} $ è uguale alla cardinalità dell'insieme
+	\[ \{j \ | \ m_{i, j} = 1\} = \{j \ | \ v_i \in e_j\} \]
+	che è uguale al numero di lati che contengono $ v_i $, ossia $ \sum_{j = 1}^{k} m_{i, j} = \deg_G(v_i) $. Pertanto il lato sinistro dell'uguaglianza è pari a $ \sum_{i = 1}^{n} \deg_g(v_i) $ ossia la somma dei gradi di tutti i vertici.\\
+	Invece fissato $ j $, il numero $ \sum_{i = 1}^{n} m_{i, j} $ è uguale alla cardinalità dell'insieme
+	\[ \{i \ | \ v_i \in e_j \} \]
+	che è uguale a 2, dato che ogni lato contiene esattamente due vertici. Ne consegue che il lato destro dell'equazione è uguale a $ 2k = 2|E| $
 }
 
 \end{document}
