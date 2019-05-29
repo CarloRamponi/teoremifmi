@@ -274,7 +274,7 @@ Per il principio di induzione di prima forma un insieme con queste proprietà co
 	\end{enumerate}
 }
 
-\teorema{Relazione findamentale dei grafi finiti}{
+\teorema{Relazione fondamentale dei grafi finiti}{
 	Se $ G = (V, E) $ è un grafo finito, allora:
 	\[ \sum_{v \in V} \deg_G(v) = 2|E| \]
 }{
@@ -293,8 +293,15 @@ Per il principio di induzione di prima forma un insieme con queste proprietà co
 	che è uguale al numero di lati che contengono $ v_i $, ossia $ \sum_{j = 1}^{k} m_{i, j} = \deg_G(v_i) $. Pertanto il lato sinistro dell'uguaglianza è pari a $ \sum_{i = 1}^{n} \deg_g(v_i) $ ossia la somma dei gradi di tutti i vertici.\\
 	Invece fissato $ j $, il numero $ \sum_{i = 1}^{n} m_{i, j} $ è uguale alla cardinalità dell'insieme
 	\[ \{i \ | \ v_i \in e_j \} \]
-	che è uguale a 2, dato che ogni lato contiene esattamente due vertici. Ne consegue che il lato destro dell'equazione è uguale a $ 2k = 2|E| $
+	che è uguale a 2, dato che ogni lato contiene esattamente due vertici. Ne consegue che il lato destro dell'equazione è uguale a $ 2k = 2|E| $\\
+	
+	\noindent\textbf{Lemma (delle strette di mano)}\\
+	In un grafo il numero di vertici di grado dispari è pari.\\\\
+	\textbf{Dimostrazione}\\
+	Segue banalmente dal fatto che la somma dei gradi (essendo il doppio del numero dei lati) è un numero pari, quindi, dal fatto che sommando un qualsiasi numero di numeri pari si ottiene sempre un numero pari e sommando un numero pari di numeri dispari si ottiene sempre un numero pari, segue che il numero di gradi dispari deve essere pari.
 }
+
+
 
 \end{document}
 
