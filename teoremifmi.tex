@@ -301,7 +301,50 @@ Per il principio di induzione di prima forma un insieme con queste proprietà co
 	Segue banalmente dal fatto che la somma dei gradi (essendo il doppio del numero dei lati) è un numero pari, quindi, dal fatto che sommando un qualsiasi numero di numeri pari si ottiene sempre un numero pari e sommando un numero pari di numeri dispari si ottiene sempre un numero pari, segue che il numero di gradi dispari deve essere pari.
 }
 
+\teorema{Caratterizzazione degli alberi finiti}{
+	Sia $ T = (V, E) $ un grafo finito. Sono fatti equivalenti:
+	\begin{enumerate}
+		\item $ T $ è un albero
+		\item $ T $ è connesso e $ |V| - 1 = |E| $
+	\end{enumerate}
+}{
+	$\mathbf{1 \Rightarrow 2}$ Procediamo per induzione su $ |V(T)| $.
+	\begin{itemize}
+		\item Se $ |V(T)| = 1 $ la tesi è vera, infatti in quel caso $ |E(T)| = 0 $.
+		\item Supponiamo che $ |V(T)| \geq 2 $ e che la tesi sia vero per ogni albero $ T' $ con $ |V(T')| = |V(T)| - 1 $.\\
+		Sia $ v \in V(T) $ una sua foglia (abbiamo dimostrato che ogni albero ha almeno 2 foglie), ora $ T - v $ è un albero ed inoltre $ |V(T - v)| = |V(T)| - 1 $. Per ipotesi di induzione abbiamo quindi che
+		\[ |V(T)| -1 -1 = |V(T-v)| - 1 = |E(T - v)| \]
+		Ma dato che $ \deg_T(v) = 1 $, $ |E(T-v)| = |E(T)| - 1 $ e quindi la tesi.
+	\end{itemize}
+	$\mathbf{2 \Rightarrow 1}$. Sia dunque $ T $ un grafo connesso che rispetta la formula di eulero. Dobbiamo provare che $ T $ non ha cicli. Procediamo ancora per induzione su $ |V(T)| $.
+	\begin{itemize}
+		\item Se $ |V(T)| = 1 $ la tesi è vera, poichè un grafo composto da un solo vertice non può avere cicli.
+		\item Supponiamo ora $ |V(T)| \geq 2 $. Proviamo innanzitutto che $ T $ ha una foglia. Dalla relazione tra numero di vertici e numero di lati, e dalla relazione che lega il numero di lati con il grado dei vertici si ottiene:
+		\[ 2|V(T)| - 2 = 2|E(T)| = \sum_{v \in V(T)}\deg_T(v) \]
+		Se non esistessero foglie, ogni $ v \in V(T) $ dovrebbe avere $ \deg_T(v) \geq 2 $. Stimiamo quindi dal basso la somma dei gradi con $ 2|V(T)| $. Si ottiene subito un assurdo:
+		\[  \sum_{v \in V(T)}\deg_T(v) = 2|V(T)| - 2 \geq 2|V(T)|  \]
+		Pertanto almeno un vertice deve avere grado 1.\\
+		Sia dunque $ v $ una foglia di $ T $ e si consideri il grafo $ T - v $.\\
+		Dato che $ T $ è connesso e $ \deg_T(v) = 1 $, anche $ T - v $ è connesso.\\
+		Inoltre, poichè $ |V(T - v)| = |V(T)| -1 $ e $ |E(T-v)| = |E(T)| - 1 $, si ha che $ |V(T-v)| - 1 = |E(T - v)| $. Per ipotesi di induzione si ha che $ T-v $ è un albero.\\
+		Ma allora $ T $ non ha cicli, in quanto i vertici di un ciclo hanno tutti grado almeno 2 e quindi un ciclo in $ T $ non potrebbe passare per $ v $, ossia sarebbe contenuto in $ T - v $ contraddicendo il fatto che $ T - v $ è un albero.
+	\end{itemize}
+}
 
+\teorema{Esistenza dell'albero di copertura per grafi connessi finiti}{
+	Sia $ G $ un grafo connesso finito, allora $ G $ ha un albero di copertura, ossia un sottografo $ T $ di $ G $ tale che $ T $ sia una albero e che $ V(T) = V(G) $.
+}{
+	Si consideri l'insieme
+	\[ \mathcal{T} = \{T \ | \  T \text{ è sottografo di } G \text{ e } T \text{ è un albero }\} \]
+	$ \mathcal{T} \neq \emptyset$, infatti se $ v \in V(G) $ allora $ (\{v\}, \emptyset) \in \mathcal{T} $ ( è un sottografo di G ed è un albero).\\
+	Dato che $ G $ è finito, esiste $ \overline{T} \in \mathcal{T} $ con massimo numero di vertici, ossia tale che
+	\[ |V(T)| \leq |V(\overline{T})| \quad \forall T \in \mathcal{T} \]
+	Se proviamo che $ V(\overline{T}) = V(G) $ avremo trovato un albero di copertura.\\
+	Supponiamo che esista $ v \in V(G) \setminus V(\overline{T}) $, allora, per la connesione di $ G $, esiste un vertice $ w \in V(G) \setminus V(\overline{T}) $ ed un vertice $ u \in V(\overline{T}) $ tali che $ \{u, w\} \in E(G) $ (ossia si congiunge $ v $ ad un vertice di $ \overline{T} $ e si prendono il primo vertice del cammino che arriva in $ \overline{T} $ ed il suo predecessore). Ma allora $ T' = (V(\overline{T}) \cup \{w\}, E(\overline{T}) \cup \{\{u, w\}\}) $ è evidentemente un sottografo di $ G $ ed è un albero.\\
+	A questo punto $ T' \in \mathcal{T} $ e $ |V(T')| = |V(\overline{T})| + 1 $ e questo è in contraddizione con la massimalità di $ \overline{T} $.\\
+	Dunque $ V(G) \setminus V(\overline{T}) = \emptyset $, quindi $ V(G) = V(\overline{T}) $.\\
+	Esiste quindi un albero di copertura per $ G $ ( ossia $ \overline{T} $ ).
+}
 
 \end{document}
 
